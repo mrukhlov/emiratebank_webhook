@@ -1,0 +1,73 @@
+{
+  "id": "6b3d9704-ee8e-4998-b075-2f2390579ed1",
+  "timestamp": "2016-09-05T15:53:00.517Z",
+  "result": {
+    "source": "agent",
+    "resolvedQuery": "Bacon, olives and peppers",
+    "action": "order.pizza_customized",
+    "actionIncomplete": false,
+    "parameters": {
+      "topping": [
+        "bacon",
+        "olives",
+        "peppers"
+      ]
+    },
+    "contexts": [
+      {
+        "name": "add-topping",
+        "parameters": {
+          "size.original": "",
+          "pizza": "",
+          "size": "",
+          "exclude.original": "",
+          "crust.original": "Gluten-free",
+          "pizza.original": "",
+          "exclude": "",
+          "topping.original": [
+            "Bacon,",
+            "olives",
+            "peppers"
+          ],
+          "topping": [
+            "bacon",
+            "olives",
+            "peppers"
+          ],
+          "crust": "gluten free"
+        },
+        "lifespan": 2
+      },
+      {
+        "name": "order-end",
+        "parameters": {
+          "topping.original": [
+            "Bacon,",
+            "olives",
+            "peppers"
+          ],
+          "topping": [
+            "bacon",
+            "olives",
+            "peppers"
+          ]
+        },
+        "lifespan": 3
+      }
+    ],
+    "metadata": {
+      "intentId": "5a51728d-7ca3-4f83-b290-0553fc1c18be",
+      "webhookUsed": "false",
+      "intentName": "order.pizza_customized - topping"
+    },
+    "fulfillment": {
+      "speech": "Got it, what else today?"
+    },
+    "score": 1
+  },
+  "status": {
+    "code": 200,
+    "errorType": "success"
+  },
+  "sessionId": "d93ce7fd-8330-4b9a-a25a-31494b677c56"
+}

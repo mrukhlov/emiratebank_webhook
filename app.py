@@ -14,45 +14,49 @@ app = Flask(__name__)
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
-    req = request.get_json(silent=True, force=True)
+	req = request.get_json(silent=True, force=True)
 
-    print("Request:")
-    print(json.dumps(req, indent=4))
+	print("Request:")
+	#print(json.dumps(req, indent=4))
 
-    res = makeWebhookResult(req)
+	res = makeWebhookResult(req)
 
-    res = json.dumps(res, indent=4)
-    print(res)
-    r = make_response(res)
-    r.headers['Content-Type'] = 'application/json'
-    return r
+	res = json.dumps(res, indent=4)
+	#print(res)
+	r = make_response(res)
+	r.headers['Content-Type'] = 'application/json'
+	return r
 
 def makeWebhookResult(req):
-    if req.get("result").get("action") != "order.pizza_customized_black":
-        return {}
-    result = req.get("result")
-    parameters = result.get("parameters")
-    zone = parameters.get("topping")
+	result = req.get("result")
+	parameters = result.get("parameters")
+	topping = parameters.get("topping")
+	
+	if 'olives' not in topping:
+		return {}
+	
+	print 'olives' in topping
+	
+	'''if req.get("result").get("action") != "order.pizza_customized_black":
+		speech = 'black'
+	elif req.get("result").get("action") != "order.pizza_customized_green":
+		speech = 'green'''
+		
+	speech = 'Got it. Green or black?'
+	print("Response:")
+	print(speech)
 
-    cost = {'Europe':100, 'North America':200, 'South America':300, 'Asia':400, 'Africa':500}
-
-    speech = "The cost of shipping to " + zone + " is " + str(cost[zone]) + " euros."
-
-    print("Response:")
-    print(speech)
-
-    return {
-        "speech": speech,
-        "displayText": speech,
-        #"data": {},
-        # "contextOut": [],
-        "source": "apiai-domino"
-    }
+	return {
+		"speech": speech,
+		"displayText": speech,
+		#"data": {},
+		"contextOut": [{"name":"topping-olive", "lifespan":2, "parameters":topping}],
+	}
 
 
 if __name__ == '__main__':
-    port = int(os.getenv('PORT', 5000))
+	port = int(os.getenv('PORT', 5000))
 
-    print "Starting app on port %d" % port
+	print "Starting app on port %d" % port
 
-    app.run(debug=True, port=port, host='0.0.0.0')
+	app.run(debug=True, port=port, host='0.0.0.0')
