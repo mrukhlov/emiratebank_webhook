@@ -1,29 +1,21 @@
 {
-  "id": "a1858678-9eb4-4adc-a75d-1f41f7fd8902",
-  "timestamp": "2016-09-06T08:25:10.357Z",
+  "id": "fb8a73f6-7b63-4e3b-b30b-cdd0cdd31f8c",
+  "timestamp": "2016-09-06T08:27:16.649Z",
   "result": {
     "source": "agent",
-    "resolvedQuery": "Bacon, olives and peppers",
-    "action": "order.pizza_customized",
+    "resolvedQuery": "black",
+    "action": "order.pizza_customized.topping.olives",
     "actionIncomplete": false,
     "parameters": {
-      "topping": [
-        "bacon",
-        "olives",
-        "peppers"
-      ]
+      "topping": "black olives"
     },
     "contexts": [
       {
         "name": "topping-olive",
         "parameters": {
-          "topping": [
-            "bacon",
-            "olives",
-            "peppers"
-          ]
+          "topping": "black olives"
         },
-        "lifespan": 2
+        "lifespan": 1
       },
       {
         "name": "add-topping",
@@ -40,40 +32,31 @@
             "olives",
             "peppers"
           ],
-          "topping": [
-            "bacon",
-            "olives",
-            "peppers"
-          ],
+          "topping": "black olives",
           "crust": "gluten free"
         },
-        "lifespan": 2
+        "lifespan": 1
       },
       {
         "name": "order-end",
         "parameters": {
+          "topping": "black olives",
           "topping.original": [
             "Bacon,",
             "olives",
             "peppers"
-          ],
-          "topping": [
-            "bacon",
-            "olives",
-            "peppers"
           ]
         },
-        "lifespan": 3
+        "lifespan": 2
       }
     ],
     "metadata": {
-      "intentId": "5a51728d-7ca3-4f83-b290-0553fc1c18be",
-      "webhookUsed": "true",
-      "intentName": "order.pizza_customized - topping"
+      "intentId": "0cdb1351-17d3-435c-a2bb-2199328fec1f",
+      "webhookUsed": "false",
+      "intentName": "order.pizza_customized - topping - black olive"
     },
     "fulfillment": {
-      "speech": "Got it. Green or black olives?",
-      "displayText": "Got it. Green or black olives?"
+      "speech": "Okay, got it."
     },
     "score": 1
   },
