@@ -83,7 +83,7 @@ def pizzaToppingCheck(req):
 	if 'olives' not in topping:
 		#return {}
 		speech_array = ['Got it, what else today?', 'Okay, got it. What else today?']
-		speech = speech_array[random.randint(0, 1)]
+		speech = speech_array[random.randint(0, len(speech)-1)]
 		return {
 			"speech": speech,
 			"displayText": speech,
