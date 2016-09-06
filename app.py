@@ -50,10 +50,10 @@ def pizzaToppingOlives(req):
 		context_end_topping = req['result']['contexts'][context_end_index]['parameters']['topping-half']
 	elif 'topping' in req['result']['contexts'][context_end_index]['parameters']:
 		context_end_topping = req['result']['contexts'][context_end_index]['parameters']['topping']
-
+	print req['result']['contexts'][context_end_index]['parameters']
 	topping_olive = req['result']['parameters']['topping_olive']
 	para_topping_ext = [i.replace('olives', topping_olive) for i in context_end_topping]
-
+	print para_topping_ext
 	'''req['result']['parameters']['topping'] = para_topping_ext
 	req['result']['contexts'][context_topping_index]['parameters']['topping'] = para_topping_ext
 	req['result']['contexts'][context_add_topping_index]['parameters']['topping'] = para_topping_ext'''
