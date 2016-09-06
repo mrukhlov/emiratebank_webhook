@@ -33,8 +33,10 @@ def makeWebhookResult(req):
 
 	if 'topping-half' in parameters:
 		topping = parameters['topping-half']
+		context = "topping-olive"
 	else:
 		topping = parameters.get("topping")
+		context = "topping-olive"
 
 	print topping
 
@@ -42,11 +44,6 @@ def makeWebhookResult(req):
 		return {}
 
 	print 'olives' in topping
-
-	'''if req.get("result").get("action") != "order.pizza_customized_black":
-		speech = 'black'
-	elif req.get("result").get("action") != "order.pizza_customized_green":
-		speech = 'green'''
 		
 	speech = 'Got it. Green or black?'
 	print("Response:")
@@ -56,7 +53,7 @@ def makeWebhookResult(req):
 		"speech": speech,
 		"displayText": speech,
 		#"data": {},
-		"contextOut": [{"name":"topping-olive", "lifespan":2, "parameters":parameters}],
+		"contextOut": [{"name":context, "lifespan":2, "parameters":parameters}],
 	}
 
 
