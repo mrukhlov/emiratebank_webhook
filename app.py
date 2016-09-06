@@ -38,13 +38,19 @@ def pizzaToppingOlives(req):
 			context_end = i
 		if i['name'] == 'topping-olive':
 			context_topping_olive = i
+		if i['name'] == 'add-topping':
+			context_add_topping = i
+
 	context_end_index = req['result']['contexts'].index(context_end)
 	context_topping_index = req['result']['contexts'].index(context_topping_olive)
+	context_add_topping_index = req['result']['contexts'].index(context_add_topping)
+
 	context_end_topping = req['result']['contexts'][context_end_index]['parameters']['topping.original']
 	topping_olive = req['result']['parameters']['topping']
 	para_topping_ext = [i.replace('olives', topping_olive) for i in context_end_topping]
 	req['result']['parameters']['topping'] = para_topping_ext
 	req['result']['contexts'][context_topping_index]['parameters']['topping'] = para_topping_ext
+	req['result']['contexts'][context_add_topping_index]['parameters']['topping'] = para_topping_ext
 	return req
 
 def pizzaToppingCheck(req):
