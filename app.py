@@ -18,12 +18,11 @@ def webhook():
 
 	print("Request:")
 	#print(json.dumps(req, indent=4))
-	res = pizzaToppingCheck(req)
 
-	'''if req.get('action') != 'order.pizza_customized.topping.olives':
+	if req.get('action') != 'order.pizza_customized.topping.olives':
 		res = pizzaToppingCheck(req)
 	else:
-		res = pizzaToppingOlives(req)'''
+		res = pizzaToppingOlives(req)
 
 	res = json.dumps(res, indent=4)
 	#print(res)
@@ -37,7 +36,7 @@ def pizzaToppingOlives(req):
 def pizzaToppingCheck(req):
 	result = req.get("result")
 	parameters = result.get("parameters")
-	contexts = result.get("contexts")
+	contexts = result.get("contexts").append([{"name":"topping-olive", "lifespan":2, "parameters":parameters}])
 
 	if 'topping-half' in parameters:
 		topping = parameters['topping-half']
