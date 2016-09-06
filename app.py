@@ -60,7 +60,7 @@ def pizzaToppingOlives(req):
 		"speech": speech,
 		"displayText": speech,
 		#"data": {},
-		"contextOut": [{"name":"asd", "lifespan":1, "parameters":req['result']['parameters']}],
+		"contextOut": [{"name":"asd", "lifespan":1, "parameters":{'topping':para_topping_ext}}],
 	}
 
 def pizzaToppingCheck(req):
