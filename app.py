@@ -66,6 +66,7 @@ def pizzaToppingOlives(req):
 def pizzaToppingCheck(req):
 	result = req.get("result")
 	parameters = result.get("parameters")
+	print parameters
 	contexts = result.get("contexts").append([{"name":"topping-olive", "lifespan":2, "parameters":parameters}])
 
 	if 'topping-half' in parameters:
