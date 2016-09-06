@@ -30,7 +30,10 @@ def webhook():
 def makeWebhookResult(req):
 	result = req.get("result")
 	parameters = result.get("parameters")
-	topping = parameters.get("topping")
+	try:
+		topping = parameters.get("topping")
+	except:
+		topping = parameters.get("topping-half")
 	
 	if 'olives' not in topping:
 		return {}
