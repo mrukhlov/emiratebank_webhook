@@ -18,8 +18,12 @@ def webhook():
 
 	print("Request:")
 	#print(json.dumps(req, indent=4))
+	res = pizzaToppingCheck(req)
 
-	res = makeWebhookResult(req)
+	'''if req.get('action') != 'order.pizza_customized.topping.olives':
+		res = pizzaToppingCheck(req)
+	else:
+		res = pizzaToppingOlives(req)'''
 
 	res = json.dumps(res, indent=4)
 	#print(res)
@@ -27,16 +31,18 @@ def webhook():
 	r.headers['Content-Type'] = 'application/json'
 	return r
 
-def makeWebhookResult(req):
+def pizzaToppingOlives(req):
+	print req
+
+def pizzaToppingCheck(req):
 	result = req.get("result")
 	parameters = result.get("parameters")
+	contexts = result.get("contexts")
 
 	if 'topping-half' in parameters:
 		topping = parameters['topping-half']
-		context = "topping-olive"
 	else:
 		topping = parameters.get("topping")
-		context = "topping-olive"
 
 	print topping
 
@@ -45,7 +51,7 @@ def makeWebhookResult(req):
 
 	print 'olives' in topping
 		
-	speech = 'Got it. Green or black?'
+	speech = 'Got it. Green or black olives?'
 	print("Response:")
 	print(speech)
 
@@ -53,7 +59,7 @@ def makeWebhookResult(req):
 		"speech": speech,
 		"displayText": speech,
 		#"data": {},
-		"contextOut": [{"name":context, "lifespan":2, "parameters":parameters}],
+		"contextOut": contexts,
 	}
 
 

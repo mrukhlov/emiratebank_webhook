@@ -1,6 +1,6 @@
 {
-  "id": "6b3d9704-ee8e-4998-b075-2f2390579ed1",
-  "timestamp": "2016-09-05T15:53:00.517Z",
+  "id": "ea71a649-e71c-4b63-afe9-623517dce459",
+  "timestamp": "2016-09-06T08:16:36.337Z",
   "result": {
     "source": "agent",
     "resolvedQuery": "Bacon, olives and peppers",
@@ -14,6 +14,17 @@
       ]
     },
     "contexts": [
+      {
+        "name": "topping-olive",
+        "parameters": {
+          "topping": [
+            "bacon",
+            "olives",
+            "peppers"
+          ]
+        },
+        "lifespan": 2
+      },
       {
         "name": "add-topping",
         "parameters": {
@@ -57,11 +68,12 @@
     ],
     "metadata": {
       "intentId": "5a51728d-7ca3-4f83-b290-0553fc1c18be",
-      "webhookUsed": "false",
+      "webhookUsed": "true",
       "intentName": "order.pizza_customized - topping"
     },
     "fulfillment": {
-      "speech": "Got it, what else today?"
+      "speech": "Got it. Green or black?",
+      "displayText": "Got it. Green or black?"
     },
     "score": 1
   },
