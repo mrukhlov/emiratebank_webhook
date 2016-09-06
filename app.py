@@ -30,16 +30,19 @@ def webhook():
 def makeWebhookResult(req):
 	result = req.get("result")
 	parameters = result.get("parameters")
-	try:
+
+	if 'topping-half' in parameters:
+		topping = parameters['topping-half']
+	else:
 		topping = parameters.get("topping")
-	except:
-		topping = parameters.get("topping-half")
-	
+
+	print topping
+
 	if 'olives' not in topping:
 		return {}
-	
+
 	print 'olives' in topping
-	
+
 	'''if req.get("result").get("action") != "order.pizza_customized_black":
 		speech = 'black'
 	elif req.get("result").get("action") != "order.pizza_customized_green":
