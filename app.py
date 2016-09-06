@@ -21,10 +21,10 @@ def webhook():
 
 	action  = req.get("result").get('action')
 
-	if action != 'order.pizza_customized.topping.olives':
+	if action == 'order.pizza_customized':
 		print 'aaa'
 		res = pizzaToppingCheck(req)
-	else:
+	elif action == 'order.pizza_customized.topping.olives':
 		print 'bbb'
 		res = pizzaToppingOlives(req)
 
