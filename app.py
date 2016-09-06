@@ -58,7 +58,7 @@ def pizzaToppingCheck(req):
 		"speech": speech,
 		"displayText": speech,
 		#"data": {},
-		"contextOut": contexts,
+		"contextOut": [{"name":"topping-olive", "lifespan":2, "parameters":parameters}],
 	}
 
 
