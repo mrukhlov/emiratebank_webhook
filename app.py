@@ -55,12 +55,12 @@ def pizzaToppingOlives(req):
 	req['result']['contexts'][context_topping_index]['parameters']['topping'] = para_topping_ext
 	req['result']['contexts'][context_add_topping_index]['parameters']['topping'] = para_topping_ext
 	#return req
-	speech = req['result']['fulfillment']['speech']
+	speech = req['result']['fulfillment']['speech'] + " We put "+' '.join(para_topping_ext)+" in your pizza"
 	return {
 		"speech": speech,
 		"displayText": speech,
 		#"data": {},
-		"contextOut": [{"name":"asd", "lifespan":1, "parameters":{'topping':para_topping_ext}}],
+		#"contextOut": [{"name":"asd", "lifespan":1, "parameters":{'topping':para_topping_ext}}],
 	}
 
 def pizzaToppingCheck(req):
