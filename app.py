@@ -3,6 +3,7 @@
 import urllib
 import json
 import os
+import random
 
 from flask import Flask
 from flask import request
@@ -75,7 +76,14 @@ def pizzaToppingCheck(req):
 	print topping
 
 	if 'olives' not in topping:
-		return {}
+		#return {}
+		speech_array = ['Got it, what else today?', 'Okay, got it.']
+		speech = speech_array[random.randint(0, 1)]
+		return {
+			"speech": speech,
+			"displayText": speech,
+			#"data": {},
+		}
 
 	print 'olives' in topping
 		
