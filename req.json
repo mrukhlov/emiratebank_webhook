@@ -1,6 +1,6 @@
 {
-  "id": "ea71a649-e71c-4b63-afe9-623517dce459",
-  "timestamp": "2016-09-06T08:16:36.337Z",
+  "id": "a1858678-9eb4-4adc-a75d-1f41f7fd8902",
+  "timestamp": "2016-09-06T08:25:10.357Z",
   "result": {
     "source": "agent",
     "resolvedQuery": "Bacon, olives and peppers",
@@ -72,8 +72,8 @@
       "intentName": "order.pizza_customized - topping"
     },
     "fulfillment": {
-      "speech": "Got it. Green or black?",
-      "displayText": "Got it. Green or black?"
+      "speech": "Got it. Green or black olives?",
+      "displayText": "Got it. Green or black olives?"
     },
     "score": 1
   },
