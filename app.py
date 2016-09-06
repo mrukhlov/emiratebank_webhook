@@ -23,10 +23,8 @@ def webhook():
 	action  = req.get("result").get('action')
 
 	if action == 'order.pizza_customized':
-		print 'aaa'
 		res = pizzaToppingCheck(req)
 	elif action == 'order.pizza_customized.topping.olives':
-		print 'bbb'
 		res = pizzaToppingOlives(req)
 
 	res = json.dumps(res, indent=4)
@@ -48,12 +46,18 @@ def pizzaToppingOlives(req):
 	context_topping_index = req['result']['contexts'].index(context_topping_olive)
 	context_add_topping_index = req['result']['contexts'].index(context_add_topping)
 
-	context_end_topping = req['result']['contexts'][context_end_index]['parameters']['topping.original']
+	if 'topping-half' in req['result']['contexts'][context_end_index]['parameters']:
+		context_end_topping = req['result']['contexts'][context_end_index]['parameters']['topping-half']
+	elif 'topping' in req['result']['contexts'][context_end_index]['parameters']:
+		context_end_topping = req['result']['contexts'][context_end_index]['parameters']['topping']
+
 	topping_olive = req['result']['parameters']['topping_olive']
 	para_topping_ext = [i.replace('olives', topping_olive) for i in context_end_topping]
-	req['result']['parameters']['topping'] = para_topping_ext
+
+	'''req['result']['parameters']['topping'] = para_topping_ext
 	req['result']['contexts'][context_topping_index]['parameters']['topping'] = para_topping_ext
-	req['result']['contexts'][context_add_topping_index]['parameters']['topping'] = para_topping_ext
+	req['result']['contexts'][context_add_topping_index]['parameters']['topping'] = para_topping_ext'''
+
 	#return req
 	speech = req['result']['fulfillment']['speech']
 	return {
@@ -84,6 +88,7 @@ def pizzaToppingCheck(req):
 			"speech": speech,
 			"displayText": speech,
 			#"data": {},
+			"contextOut": [{"name": "order-end", "lifespan": 1, "parameters": parameters}],
 		}
 
 	print 'olives' in topping
