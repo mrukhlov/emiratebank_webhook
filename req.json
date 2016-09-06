@@ -1,6 +1,6 @@
 {
-  "id": "fb8a73f6-7b63-4e3b-b30b-cdd0cdd31f8c",
-  "timestamp": "2016-09-06T08:27:16.649Z",
+  "id": "de1615a2-05d6-47fe-bdd3-dd71cd21121f",
+  "timestamp": "2016-09-06T09:12:56.956Z",
   "result": {
     "source": "agent",
     "resolvedQuery": "black",
@@ -24,35 +24,43 @@
           "pizza": "",
           "size": "",
           "exclude.original": "",
-          "crust.original": "Gluten-free",
+          "crust.original": "",
           "pizza.original": "",
           "exclude": "",
           "topping.original": [
-            "Bacon,",
+            "Bacon",
             "olives",
             "peppers"
           ],
           "topping": "black olives",
-          "crust": "gluten free"
+          "crust": ""
         },
         "lifespan": 1
       },
       {
         "name": "order-end",
         "parameters": {
-          "topping": "black olives",
+          "size.original": "",
+          "pizza": "",
+          "size": "",
+          "exclude.original": "",
+          "crust.original": "",
+          "pizza.original": "",
+          "exclude": "",
           "topping.original": [
-            "Bacon,",
+            "Bacon",
             "olives",
             "peppers"
-          ]
+          ],
+          "topping": "black olives",
+          "crust": ""
         },
         "lifespan": 2
       }
     ],
     "metadata": {
       "intentId": "0cdb1351-17d3-435c-a2bb-2199328fec1f",
-      "webhookUsed": "false",
+      "webhookUsed": "true",
       "intentName": "order.pizza_customized - topping - black olive"
     },
     "fulfillment": {
@@ -61,8 +69,9 @@
     "score": 1
   },
   "status": {
-    "code": 200,
-    "errorType": "success"
+    "code": 206,
+    "errorType": "partial_content",
+    "errorDetails": "Webhook call failed. Error:Could not read JSON: Unrecognized field \"timestamp\" (class com.speaktoit.api.server.webhook.model.WebhookResponse), not marked as ignorable (5 known properties: \"speech\", \"source\", \"displayText\", \"data\", \"contextOut\"])\n at [Source: sun.net.www.protocol.http.HttpURLConnection$HttpInputStream@6b216e5; line: 2, column: 19] (through reference chain: com.speaktoit.api.server.webhook.model.WebhookResponse[\"timestamp\"]); nested exception is com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field \"timestamp\" (class com.speaktoit.api.server.webhook.model.WebhookResponse), not marked as ignorable (5 known properties: \"speech\", \"source\", \"displayText\", \"data\", \"contextOut\"])\n at [Source: sun.net.www.protocol.http.HttpURLConnection$HttpInputStream@6b216e5; line: 2, column: 19] (through reference chain: com.speaktoit.api.server.webhook.model.WebhookResponse[\"timestamp\"])"
   },
   "sessionId": "d93ce7fd-8330-4b9a-a25a-31494b677c56"
 }
