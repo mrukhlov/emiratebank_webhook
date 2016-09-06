@@ -50,7 +50,7 @@ def makeWebhookResult(req):
 		"speech": speech,
 		"displayText": speech,
 		#"data": {},
-		#"contextOut": [{"name":"topping-olive", "lifespan":2, "parameters":topping}],
+		"contextOut": [{"name":"topping-olive", "lifespan":2, "parameters":parameters}],
 	}
 
 
