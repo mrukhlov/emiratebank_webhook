@@ -49,7 +49,7 @@ def pizzaToppingOlives(req):
 	context_add_topping_index = req['result']['contexts'].index(context_add_topping)
 
 	context_end_topping = req['result']['contexts'][context_end_index]['parameters']['topping.original']
-	topping_olive = req['result']['parameters']['topping']
+	topping_olive = req['result']['parameters']['topping_olive']
 	para_topping_ext = [i.replace('olives', topping_olive) for i in context_end_topping]
 	req['result']['parameters']['topping'] = para_topping_ext
 	req['result']['contexts'][context_topping_index]['parameters']['topping'] = para_topping_ext
@@ -60,14 +60,14 @@ def pizzaToppingOlives(req):
 		"speech": speech,
 		"displayText": speech,
 		#"data": {},
-		#"contextOut": [{"name":"asd", "lifespan":1, "parameters":{'topping':para_topping_ext}}],
+		"contextOut": [{"name":"order-end", "lifespan":1, "parameters":{'topping':para_topping_ext}}],
 	}
 
 def pizzaToppingCheck(req):
 	result = req.get("result")
 	parameters = result.get("parameters")
 	print parameters
-	contexts = result.get("contexts").append([{"name":"topping-olive", "lifespan":2, "parameters":parameters}])
+	#contexts = result.get("contexts").append([{"name":"topping-olive", "lifespan":2, "parameters":parameters}])
 
 	if 'topping-half' in parameters:
 		topping = parameters['topping-half']
@@ -96,7 +96,7 @@ def pizzaToppingCheck(req):
 		"speech": speech,
 		"displayText": speech,
 		#"data": {},
-		"contextOut": [{"name":"topping-olive", "lifespan":3, "parameters":parameters}],
+		"contextOut": [{"name":"topping-olive", "lifespan":1, "parameters":parameters}],
 	}
 
 
