@@ -24,6 +24,8 @@ def webhook():
         res = pizzaToppingCheck(req)
     elif action == 'order.pizza_customized.topping.olives':
         res = pizzaToppingOlives(req)
+    else:
+        log.error("Unexpeted action.")
 
     return make_response(jsonify(res))
 
@@ -41,7 +43,7 @@ def pizzaToppingOlives(req):
         context_end_topping = req['result']['contexts'][context_end_index]['parameters']['topping']
 
     topping_olive = req['result']['parameters']['topping']
-    para_topping_ext = [i.replace('olives', topping_olive) for i in context_end_topping]
+    param_topping_ext = [i.replace('olives', topping_olive) for i in context_end_topping]
 
     speech = req['result']['fulfillment']['speech']
 
@@ -53,7 +55,7 @@ def pizzaToppingOlives(req):
                 "name": "order-end",
                 "lifespan": 1,
                 "parameters": {
-                    'topping': para_topping_ext
+                    'topping': param_topping_ext
                 }
             }
         ],
@@ -70,12 +72,23 @@ def pizzaToppingCheck(req):
         topping = parameters.get("topping")
 
     if 'olives' not in topping:
-        speech_array = ['Got it, what else today?', 'Okay, got it. What else today?']
-        speech = speech_array[random.randint(0, len(speech_array) - 1)]
+        speech_array = [
+            'Got it, what else today?',
+            'Okay, got it. What else today?'
+        ]
+
+        speech = random.choice(speech_array)
+
         return {
             "speech": speech,
             "displayText": speech,
-            "contextOut": [{"name": "order-end", "lifespan": 1, "parameters": parameters}],
+            "contextOut": [
+                {
+                    "name": "order-end",
+                    "lifespan": 1,
+                    "parameters": parameters
+                }
+            ],
         }
 
     speech = 'Green or black olives?'
@@ -83,11 +96,21 @@ def pizzaToppingCheck(req):
     return {
         "speech": speech,
         "displayText": speech,
-        "contextOut": [{"name": "topping-olive", "lifespan": 1, "parameters": parameters}],
+        "contextOut": [
+            {
+                "name": "topping-olive",
+                "lifespan": 1,
+                "parameters": parameters
+            }
+        ],
     }
 
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
 
-    app.run(debug=True, port=port, host='0.0.0.0')
+    app.run(
+        debug=True,
+        port=port,
+        host='0.0.0.0'
+    )
