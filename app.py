@@ -31,16 +31,23 @@ def webhook():
 
 
 def pizzaToppingOlives(req):
-    for i in req['result']['contexts']:
-        if i['name'] == 'order-end':
-            context_end = i
+    contexts = req['result']['contexts']
 
-    context_end_index = req['result']['contexts'].index(context_end)
+    order_end_context = None
 
-    if 'topping-half' in req['result']['contexts'][context_end_index]['parameters']:
-        context_end_topping = req['result']['contexts'][context_end_index]['parameters']['topping-half']
-    elif 'topping' in req['result']['contexts'][context_end_index]['parameters']:
-        context_end_topping = req['result']['contexts'][context_end_index]['parameters']['topping']
+    for context in contexts:
+        if context.get('name') == 'order-end':
+            order_end_context = context
+            break
+
+    order_end_context_params = order_end_context.get('parameters')
+
+    context_end_topping = None
+
+    if 'topping-half' in order_end_context_params:
+        context_end_topping = order_end_context_params['topping-half']
+    else:
+        context_end_topping = order_end_context_params.get('topping')
 
     topping_olive = req['result']['parameters']['topping']
     param_topping_ext = [i.replace('olives', topping_olive) for i in context_end_topping]
