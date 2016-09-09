@@ -1,19 +1,64 @@
 {
-  "id": "fb8a73f6-7b63-4e3b-b30b-cdd0cdd31f8c",
-  "timestamp": "2016-09-06T08:27:16.649Z",
+  "id": "bb320978-fc36-45e0-a2a8-4ad0ff62fb3a",
+  "timestamp": "2016-09-09T15:10:39.824Z",
   "result": {
     "source": "agent",
-    "resolvedQuery": "black",
+    "resolvedQuery": "green",
     "action": "order.pizza_customized.topping.olives",
     "actionIncomplete": false,
     "parameters": {
-      "topping": "black olives"
+      "topping": [
+        "onions",
+        "sausage",
+        "olives"
+      ],
+      "topping_olive": "green olives"
     },
     "contexts": [
       {
         "name": "topping-olive",
         "parameters": {
-          "topping": "black olives"
+          "topping": [
+            "onions",
+            "sausage",
+            "olives"
+          ],
+          "topping_olive": "green olives",
+          "topping_olive.original": ""
+        },
+        "lifespan": 1
+      },
+      {
+        "name": "order-product",
+        "parameters": {
+          "phone-number": "1230001234",
+          "street.original": "30 Frank Lloyd Wright Drive",
+          "zip-code.original": "48105",
+          "city": "Ann Arbor",
+          "state.original": "MI",
+          "phone-number.original": "123-000-1234",
+          "crust.original": "gluten-free",
+          "city.original": "Ann Arbor",
+          "crust": "gluten free",
+          "size.original": "",
+          "size": "",
+          "exclude.original": "",
+          "street": "30 Frank Lloyd Wright Drive",
+          "topping_olive": "green olives",
+          "exclude": "",
+          "state": "Michigan",
+          "topping.original": [
+            "onions,",
+            "sausage",
+            "olives"
+          ],
+          "zip-code": "48105",
+          "topping": [
+            "onions",
+            "sausage",
+            "olives"
+          ],
+          "topping_olive.original": ""
         },
         "lifespan": 1
       },
@@ -21,48 +66,59 @@
         "name": "add-topping",
         "parameters": {
           "size.original": "",
-          "pizza": "",
           "size": "",
           "exclude.original": "",
-          "crust.original": "Gluten-free",
-          "pizza.original": "",
+          "topping_olive": "green olives",
+          "crust.original": "gluten-free",
           "exclude": "",
           "topping.original": [
-            "Bacon,",
-            "olives",
-            "peppers"
+            "onions,",
+            "sausage",
+            "olives"
           ],
-          "topping": "black olives",
-          "crust": "gluten free"
+          "topping": [
+            "onions",
+            "sausage",
+            "olives"
+          ],
+          "crust": "gluten free",
+          "topping_olive.original": ""
         },
-        "lifespan": 1
+        "lifespan": 3
       },
       {
         "name": "order-end",
         "parameters": {
-          "topping": "black olives",
           "topping.original": [
-            "Bacon,",
-            "olives",
-            "peppers"
-          ]
+            "onions,",
+            "sausage",
+            "olives"
+          ],
+          "topping": [
+            "onions",
+            "sausage",
+            "olives"
+          ],
+          "topping_olive": "green olives",
+          "topping_olive.original": ""
         },
         "lifespan": 2
       }
     ],
     "metadata": {
-      "intentId": "0cdb1351-17d3-435c-a2bb-2199328fec1f",
-      "webhookUsed": "false",
-      "intentName": "order.pizza_customized - topping - black olive"
+      "intentId": "cec9127b-fb41-4598-b8b4-d50ad699c228",
+      "webhookUsed": "true",
+      "intentName": "order.pizza_customized - topping - green olive"
     },
     "fulfillment": {
-      "speech": "Okay, got it."
+      "speech": "Got it, what else today?"
     },
     "score": 1
   },
   "status": {
-    "code": 200,
-    "errorType": "success"
+    "code": 206,
+    "errorType": "partial_content",
+    "errorDetails": "Webhook call failed. Status code 500. Error:500 INTERNAL SERVER ERROR"
   },
-  "sessionId": "d93ce7fd-8330-4b9a-a25a-31494b677c56"
+  "sessionId": "05cdab14-a5ef-49fa-910d-041ab6ac8980"
 }

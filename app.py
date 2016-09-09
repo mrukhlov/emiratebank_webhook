@@ -49,7 +49,7 @@ def pizzaToppingOlives(req):
     else:
         context_end_topping = order_end_context_params.get('topping')
 
-    topping_olive = req['result']['parameters']['topping']
+    topping_olive = req['result']['parameters']['topping_olive']
     param_topping_ext = [i.replace('olives', topping_olive) for i in context_end_topping]
 
     speech = req['result']['fulfillment']['speech']
