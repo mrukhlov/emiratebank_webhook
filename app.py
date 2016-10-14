@@ -32,11 +32,14 @@ def countryCheck(req):
     speech = req['result']['fulfillment']['speech']
     country = req['result']['parameters']['country']
 
-    country_list = ['India', 'Pakistan', 'Sri Lanka', 'Philippines', 'Egypt', 'Iran', 'North Korea']
-    if country not in country_list:
+    country_list_prohibited = ['Iran', 'North Korea']
+    country_list_direct = ['India', 'Pakistan', 'Sri Lanka', 'Philippines', 'Egypt']
+    if country not in list(set(country_list_prohibited) + set(country_list_direct)):
         speech = 'You can send money to '+country+' using our international money transfer service. Please refer to the <URL> for more information. Can I help you with something else?'
-    else:
+    elif country in country_list_prohibited:
         speech = 'Sorry we are not able to transfer money to '+country+'. Can I help you with something else?'
+    elif country in country_list_direct:
+        speech = 'You can use Direct Remit to transfer money to '+country+'. Would you like to know more?'
 
     return {
         "speech": speech,
