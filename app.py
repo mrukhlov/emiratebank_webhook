@@ -27,7 +27,7 @@ def webhook():
 
     return pizzaCountryCheck(jsonify(res))
 
-def pizzaToppingOlives(req):
+def pizzaCountryCheck(req):
 
     return {
         "speech": 'aaa',
