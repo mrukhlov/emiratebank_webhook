@@ -25,7 +25,7 @@ def webhook():
     elif action == 'transfer.money_service.info':
         res = directRemitYes(req)
     elif action == 'transfer.money_service.info_country':
-        pass
+        res = directRemitCountry(req)
     else:
         log.error("Unexpeted action.")
 
