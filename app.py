@@ -57,14 +57,7 @@ def countryCheck(req):
     return {
         "speech": speech,
         "displayText": speech,
-        "contextOut": [
-            {
-                "name": "country-info",
-                "lifespan": 1,
-                "parameters": {
-                    'country': country
-                }
-            }]
+        "contextOut": [contexts]
     }
 
 def directRemitYes(req):
@@ -74,7 +67,14 @@ def directRemitYes(req):
     return {
         "speech": speech,
         "displayText": speech,
-        "contextOut": [contexts]
+        "contextOut": [
+            {
+                "name": "country-info",
+                "lifespan": 1,
+                "parameters": {
+                    'country': country
+                }
+            }]
     }
 
 def directRemitCountry(req):
