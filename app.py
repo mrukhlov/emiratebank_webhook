@@ -21,7 +21,11 @@ def webhook():
     action = req.get("result").get('action')
 
     if action == 'transfer.money':
-        res = countryCheck(req)
+        #res = countryCheck(req)
+        res = {
+        "speech": 'aaa',
+        "displayText": 'bbb',
+    }
     else:
         log.error("Unexpeted action.")
 
