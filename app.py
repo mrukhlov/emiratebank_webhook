@@ -66,15 +66,7 @@ def directRemitYes(req):
 
     return {
         "speech": speech,
-        "displayText": speech,
-        "contextOut": [
-        {
-            "name": "country-info",
-            "lifespan": 1,
-            "parameters": {
-                'country': contexts['country']
-            }
-        }],
+        "displayText": speech
     }
 
 def directRemitCountry(req):
