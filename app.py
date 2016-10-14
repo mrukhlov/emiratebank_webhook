@@ -57,16 +57,24 @@ def countryCheck(req):
     return {
         "speech": speech,
         "displayText": speech,
-        "contextOut": [contexts]
+        "contextOut": [
+            {
+                "name": "country-info",
+                "lifespan": 1,
+                "parameters": {
+                    'country': country
+                }
+            }]
     }
 
 def directRemitYes(req):
     contexts = req['result']['contexts'][0]['parameters']
-    speech = 'DirectRemit is free service that allows you to transfer money in 60 seconds. You can ask me more about Direct Remit to ' + contexts['country']
+    speech = 'DirectRemit is free service that allows you to transfer money in 60 seconds. You can ask me more about Direct Remit to ' + contexts['country'] + '.'
 
     return {
         "speech": speech,
-        "displayText": speech
+        "displayText": speech,
+        "contextOut": [contexts]
     }
 
 def directRemitCountry(req):
