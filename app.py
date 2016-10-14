@@ -25,11 +25,11 @@ def webhook():
         res = {
         "speech": 'aaa',
         "displayText": 'bbb',
-    }
+        }
     else:
         log.error("Unexpeted action.")
 
-    return countryCheck(jsonify(res))
+    return jsonify(res)
 
 def countryCheck(req):
 
