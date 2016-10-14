@@ -48,7 +48,7 @@ def countryCheck(req):
         speech = 'You can use Direct Remit to transfer money to '+country+'. Would you like to know more?'
         contexts = {
                 "name": "service-info",
-                "lifespan": 1,
+                "lifespan": 2,
                 "parameters": {
                     'country': country
                 }
