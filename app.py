@@ -40,14 +40,24 @@ def countryCheck(req):
     country_list_direct = ['India', 'Pakistan', 'Sri Lanka', 'Philippines', 'Egypt']
     if country not in country_list_prohibited + country_list_direct:
         speech = 'You can send money to '+country+' using our international money transfer service. Please refer to the <URL> for more information. Can I help you with something else?'
+        contexts = {}
     elif country in country_list_prohibited:
         speech = 'Sorry we are not able to transfer money to '+country+'. Can I help you with something else?'
+        contexts = {}
     elif country in country_list_direct:
         speech = 'You can use Direct Remit to transfer money to '+country+'. Would you like to know more?'
+        contexts = {
+                "name": "order-end",
+                "lifespan": 1,
+                "parameters": {
+                    'topping': param_topping_ext
+                }
+            }
 
     return {
         "speech": speech,
         "displayText": speech,
+        "contextOut": [contexts]
     }
 
 def directRemitYes(req):
