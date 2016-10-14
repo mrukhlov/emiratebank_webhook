@@ -72,7 +72,7 @@ def directRemitYes(req):
                 "name": "country-info",
                 "lifespan": 1,
                 "parameters": {
-                    'country': country
+                    'country': contexts['country']
                 }
             }]
     }
