@@ -26,6 +26,8 @@ def webhook():
         res = directRemitYes(req)
     elif action == 'transfer.money_service.info_country':
         res = directRemitCountry(req)
+    elif action == 'support.transfer.amount':
+        res = directRemitCountryAmount(req)
     else:
         log.error("Unexpeted action.")
 
@@ -48,7 +50,7 @@ def countryCheck(req):
         speech = 'You can use Direct Remit to transfer money to '+country+'. Would you like to know more?'
         contexts = {
                 "name": "service-info",
-                "lifespan": 2,
+                "lifespan": 3,
                 "parameters": {
                     'country': country
                 }
@@ -72,6 +74,19 @@ def directRemitYes(req):
 def directRemitCountry(req):
     contexts = req['result']['contexts'][0]['parameters']
     speech = 'You can send a maximum of upto INR 5,000,000 to '+contexts['country']+' for Direct Remit.'
+
+    return {
+        "speech": speech,
+        "displayText": speech
+    }
+
+def directRemitCountryAmount(req):
+    quantity = req['result']['parameters']['amount']
+
+    if quantity == 'max':
+        speech = 'Your Segment limit applicable for DirectRemit to India is detailed below:\n\n- Personal Banking AED 200,000\n- Private Banking AED 500,000\nThe maximum remittance amount for DirectRemit to Philippines is PHP 500,000 per transaction across segments. The maximum remittance for DirectRemit to Pakistan is PKR 500,000 per transaction across segments. The maximum remittance for DirectRemit to Sri Lanka is LKR 1,000,000 per transaction across segments. The maximum remittance for DirectRemit to Egypt is EGP 100,000 per transaction across segments'
+    elif quantity == 'min':
+        speech = 'An equivalent of AED 100 in the respective home currency is the minimum amount that can be transferred via DirectRemit.'
 
     return {
         "speech": speech,
