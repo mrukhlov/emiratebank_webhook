@@ -21,26 +21,17 @@ def webhook():
     action = req.get("result").get('action')
 
     if action == 'transfer.money':
-        res = pizzaCountryCheck(req)
+        res = countryCheck(req)
     else:
         log.error("Unexpeted action.")
 
-    return pizzaCountryCheck(jsonify(res))
+    return countryCheck(jsonify(res))
 
-def pizzaCountryCheck(req):
+def countryCheck(req):
 
     return {
         "speech": 'aaa',
         "displayText": 'bbb',
-        "contextOut": [
-            {
-                "name": "order-end",
-                "lifespan": 1,
-                "parameters": {
-                    'country': 'test_country'
-                }
-            }
-        ],
     }
 
 
