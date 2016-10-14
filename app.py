@@ -21,21 +21,26 @@ def webhook():
     action = req.get("result").get('action')
 
     if action == 'transfer.money':
-        #res = countryCheck(req)
-        res = {
-        "speech": 'aaa',
-        "displayText": 'bbb',
-        }
+        res = countryCheck(req)
     else:
         log.error("Unexpeted action.")
 
-    return jsonify(res)
+    return make_response(jsonify(res))
 
 def countryCheck(req):
 
+    speech = req['result']['fulfillment']['speech']
+    country = req['result']['parameters']['country']
+
+    country_list = ['India', 'Pakistan', 'Sri Lanka', 'Philippines', 'Egypt', 'Iran', 'North Korea']
+    if country not in country_list:
+        speech = 'You can send money to '+country+' using our international money transfer service. Please refer to the <URL> for more information. Can I help you with something else?'
+    else:
+        speech = 'Sorry we are not able to transfer money to '+country+'. Can I help you with something else?'
+
     return {
-        "speech": 'aaa',
-        "displayText": 'bbb',
+        "speech": speech,
+        "displayText": speech,
     }
 
 
