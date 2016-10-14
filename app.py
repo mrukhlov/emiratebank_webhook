@@ -22,6 +22,10 @@ def webhook():
 
     if action == 'transfer.money':
         res = countryCheck(req)
+    elif action == 'transfer.money_service.info':
+        res = directRemitYes(req)
+    elif action == 'transfer.money_service.info_country':
+        pass
     else:
         log.error("Unexpeted action.")
 
@@ -44,6 +48,24 @@ def countryCheck(req):
     return {
         "speech": speech,
         "displayText": speech,
+    }
+
+def directRemitYes(req):
+    contexts = req['result']['contexts'].get('parameters')
+    speech = 'DirectRemit is free service that allows you to transfer money in 60 seconds. You can ask me more about Direct Remit to ' + contexts['country']
+
+    return {
+        "speech": speech,
+        "displayText": speech
+    }
+
+def directRemitCountry(req):
+    contexts = req['result']['contexts'].get('parameters')
+    speech = 'You can send a maximum of upto INR 5,000,000 to '+contexts['country']+' for Direct Remit.'
+
+    return {
+        "speech": speech,
+        "displayText": speech
     }
 
 
