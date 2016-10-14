@@ -61,7 +61,7 @@ def countryCheck(req):
     }
 
 def directRemitYes(req):
-    contexts = req['result']['contexts'].get('parameters')
+    contexts = req['result']['contexts'][0]['parameters']
     speech = 'DirectRemit is free service that allows you to transfer money in 60 seconds. You can ask me more about Direct Remit to ' + contexts['country']
 
     return {
@@ -70,7 +70,7 @@ def directRemitYes(req):
     }
 
 def directRemitCountry(req):
-    contexts = req['result']['contexts'].get('parameters')
+    contexts = req['result']['contexts'][0]['parameters']
     speech = 'You can send a maximum of upto INR 5,000,000 to '+contexts['country']+' for Direct Remit.'
 
     return {
