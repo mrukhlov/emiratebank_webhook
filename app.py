@@ -47,10 +47,10 @@ def countryCheck(req):
     elif country in country_list_direct:
         speech = 'You can use Direct Remit to transfer money to '+country+'. Would you like to know more?'
         contexts = {
-                "name": "order-end",
+                "name": "service-info",
                 "lifespan": 1,
                 "parameters": {
-                    'topping': param_topping_ext
+                    'country': country
                 }
             }
 
