@@ -20,17 +20,31 @@ def webhook():
 
     action = req.get("result").get('action')
 
-    if action == 'order.pizza_customized':
-        res = pizzaToppingCheck(req)
-    elif action == 'order.pizza_customized.topping.olives':
-        res = pizzaToppingOlives(req)
+    if action == 'transfer.money':
+        res = pizzaCountryCheck(req)
     else:
         log.error("Unexpeted action.")
 
-    return make_response(jsonify(res))
-
+    return pizzaCountryCheck(jsonify(res))
 
 def pizzaToppingOlives(req):
+
+    return {
+        "speech": 'aaa',
+        "displayText": 'bbb',
+        "contextOut": [
+            {
+                "name": "order-end",
+                "lifespan": 1,
+                "parameters": {
+                    'country': 'test_country'
+                }
+            }
+        ],
+    }
+
+
+'''def pizzaToppingOlives(req):
     contexts = req['result']['contexts']
 
     order_end_context = None
@@ -110,7 +124,7 @@ def pizzaToppingCheck(req):
                 "parameters": parameters
             }
         ],
-    }
+    }'''
 
 
 if __name__ == '__main__':
